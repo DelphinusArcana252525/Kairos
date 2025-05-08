@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://mvhfoosl1dih"]
+
+[ext_resource type="Script" path="res://time_affected_layer.gd" id="1_gkv8h"]
+
+[node name="TimeAffectedLayer" type="TileMapLayer"]
+script = ExtResource("1_gkv8h")
