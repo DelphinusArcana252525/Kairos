@@ -7,33 +7,33 @@ var era: int = 0
 func _ready() -> void:
 	timeline = [
 		Time_Event.new([ # add the red platform
-			Map_Change.new(Map_Change.types.ADD, Vector2i(6,15), Vector2i(0,1)),
-			Map_Change.new(Map_Change.types.ADD, Vector2i(7,15), Vector2i(0,1)),
-			Map_Change.new(Map_Change.types.ADD, Vector2i(8,15), Vector2i(0,1))
+			Map_Change.new("", Map_Change.types.ADD, Vector2i(6,15), Vector2i(0,1)),
+			Map_Change.new("", Map_Change.types.ADD, Vector2i(7,15), Vector2i(0,1)),
+			Map_Change.new("", Map_Change.types.ADD, Vector2i(8,15), Vector2i(0,1))
 		], false, 1),
 		Time_Event.new([ # remove the red platform
-			Map_Change.new(Map_Change.types.DELETE, Vector2i(6,15), Vector2i(0,1)),
-			Map_Change.new(Map_Change.types.DELETE, Vector2i(7,15), Vector2i(0,1)),
-			Map_Change.new(Map_Change.types.DELETE, Vector2i(8,15), Vector2i(0,1))
+			Map_Change.new("", Map_Change.types.DELETE, Vector2i(6,15), Vector2i(0,1)),
+			Map_Change.new("", Map_Change.types.DELETE, Vector2i(7,15), Vector2i(0,1)),
+			Map_Change.new("", Map_Change.types.DELETE, Vector2i(8,15), Vector2i(0,1))
 		], false, 5),
 		Time_Event.new([ # remove the blue platforms
-			Map_Change.new(Map_Change.types.DELETE, Vector2i(17,10), Vector2i(0,1)),
-			Map_Change.new(Map_Change.types.DELETE, Vector2i(17,11), Vector2i(0,1)),
-			Map_Change.new(Map_Change.types.DELETE, Vector2i(17,12), Vector2i(0,1)),
-			Map_Change.new(Map_Change.types.DELETE, Vector2i(17,13), Vector2i(0,1)),
-			Map_Change.new(Map_Change.types.DELETE, Vector2i(18,13), Vector2i(0,1)),
-			Map_Change.new(Map_Change.types.DELETE, Vector2i(19,13), Vector2i(0,1)),
-			Map_Change.new(Map_Change.types.DELETE, Vector2i(20,13), Vector2i(0,1)),
-			Map_Change.new(Map_Change.types.DELETE, Vector2i(21,13), Vector2i(0,1)),
-			Map_Change.new(Map_Change.types.DELETE, Vector2i(28,13), Vector2i(0,1)),
-			Map_Change.new(Map_Change.types.DELETE, Vector2i(29,13), Vector2i(0,1)),
-			Map_Change.new(Map_Change.types.DELETE, Vector2i(30,13), Vector2i(0,1)),
-			Map_Change.new(Map_Change.types.DELETE, Vector2i(31,13), Vector2i(0,1))
+			Map_Change.new("", Map_Change.types.DELETE, Vector2i(17,10), Vector2i(0,1)),
+			Map_Change.new("", Map_Change.types.DELETE, Vector2i(17,11), Vector2i(0,1)),
+			Map_Change.new("", Map_Change.types.DELETE, Vector2i(17,12), Vector2i(0,1)),
+			Map_Change.new("", Map_Change.types.DELETE, Vector2i(17,13), Vector2i(0,1)),
+			Map_Change.new("", Map_Change.types.DELETE, Vector2i(18,13), Vector2i(0,1)),
+			Map_Change.new("", Map_Change.types.DELETE, Vector2i(19,13), Vector2i(0,1)),
+			Map_Change.new("", Map_Change.types.DELETE, Vector2i(20,13), Vector2i(0,1)),
+			Map_Change.new("", Map_Change.types.DELETE, Vector2i(21,13), Vector2i(0,1)),
+			Map_Change.new("", Map_Change.types.DELETE, Vector2i(28,13), Vector2i(0,1)),
+			Map_Change.new("", Map_Change.types.DELETE, Vector2i(29,13), Vector2i(0,1)),
+			Map_Change.new("", Map_Change.types.DELETE, Vector2i(30,13), Vector2i(0,1)),
+			Map_Change.new("", Map_Change.types.DELETE, Vector2i(31,13), Vector2i(0,1))
 		], false, 7),
 		Time_Event.new([ # add the yellow platforms
-			Map_Change.new(Map_Change.types.ADD, Vector2i(14,11), Vector2i(0,1)),
-			Map_Change.new(Map_Change.types.ADD, Vector2i(15,11), Vector2i(0,1)),
-			Map_Change.new(Map_Change.types.ADD, Vector2i(17,9), Vector2i(0,1))
+			Map_Change.new("", Map_Change.types.ADD, Vector2i(14,11), Vector2i(0,1)),
+			Map_Change.new("", Map_Change.types.ADD, Vector2i(15,11), Vector2i(0,1)),
+			Map_Change.new("", Map_Change.types.ADD, Vector2i(17,9), Vector2i(0,1))
 		], false, 7)
 	]
 	#timeline = [Time_Event.new([Map_Change.new(Map_Change.types.ADD, Vector2i(1,1), Vector2i(0,1))], false, 1),
