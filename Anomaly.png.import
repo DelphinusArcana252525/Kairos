@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://o7h7yphkalx1"
-path="res://.godot/imported/spr_torch.png-bf790e073a99691fd2dbe4683257844c.ctex"
+uid="uid://0bx8uht5jaho"
+path="res://.godot/imported/Anomaly.png-4630d8a4ca555dff2ace396298e95961.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/spr_torch.png"
-dest_files=["res://.godot/imported/spr_torch.png-bf790e073a99691fd2dbe4683257844c.ctex"]
+source_file="res://Anomaly.png"
+dest_files=["res://.godot/imported/Anomaly.png-4630d8a4ca555dff2ace396298e95961.ctex"]
 
 [params]
 

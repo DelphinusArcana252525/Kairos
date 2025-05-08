@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://o7h7yphkalx1"
-path="res://.godot/imported/spr_torch.png-bf790e073a99691fd2dbe4683257844c.ctex"
+uid="uid://doyuuqcjjn7wq"
+path="res://.godot/imported/Tilesetv3.png-7d616fa27086f26488c9a175ab787ff1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/spr_torch.png"
-dest_files=["res://.godot/imported/spr_torch.png-bf790e073a99691fd2dbe4683257844c.ctex"]
+source_file="res://Tilesetv3.png"
+dest_files=["res://.godot/imported/Tilesetv3.png-7d616fa27086f26488c9a175ab787ff1.ctex"]
 
 [params]
 
