@@ -1,8 +1,8 @@
 [gd_scene load_steps=10 format=4 uid="uid://cox6t0jkt6a08"]
 
 [ext_resource type="Texture2D" uid="uid://0fsl0fri3455" path="res://Assets/BadTileSet.png" id="1_ejhqf"]
-[ext_resource type="Script" path="res://world.gd" id="1_xmny2"]
-[ext_resource type="Script" path="res://platforms.gd" id="3_qj2e8"]
+[ext_resource type="Script" path="res://SingleLayerTests/world.gd" id="1_xmny2"]
+[ext_resource type="Script" path="res://SingleLayerTests/platforms.gd" id="3_qj2e8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n76uh"]
 texture = ExtResource("1_ejhqf")

@@ -1,15 +1,20 @@
 extends Node2D
 
+class_name Timeline_Manager
+
 var timeline: Array[Time_Event]
 var layers: Array[Time_Affected_Layer]
-var era: int
+var current_era: int
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	timeline = []
-	layers = []
-	era = 0
+	pass
 
+func construct (timeline: Array[Time_Event], start_era: int = 0):
+	self.timeline = timeline
+	self.layers = []
+	current_era = start_era
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -37,3 +42,18 @@ func add_layers(new_layers: Array[Time_Affected_Layer]) -> bool:
 				return false
 		layers.append(new_layer)
 	return true
+
+
+func go_to_era (new_era: int) -> void:
+	print("New era: " + str(new_era))
+	for layer in layers:
+		layer.reset_to_original()
+		print(layer.layer_id)
+		#print(layer.layer_id)
+	var era = 0
+	while era <= new_era:
+		for event in timeline:
+			if event.time_to_happen == era:
+				apply_event(event)
+		era += 1
+	current_era = new_era

@@ -7,6 +7,7 @@ var original_setup: Array[PackedVector2Array]
 @export var max_width: int = 100
 @export var max_height: int = 50
 @export var layer_id: String = ""
+var source_id = 0 #TODO: be able to have different source ids
 
 func _init() -> void:
 	if layer_id == "":
@@ -28,7 +29,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-
+#TODO: be able to have different source ids
 func apply_change (change: Map_Change) -> bool:
 	if change.layer_id != layer_id:
 		print("Wrong layer")
@@ -42,11 +43,11 @@ func apply_change (change: Map_Change) -> bool:
 				return true
 			return false
 		Map_Change.types.ADD:
-			set_cell(change.pos, 0, change.tile_type)
+			set_cell(change.pos, source_id, change.tile_type)
 			return true
 	return false
 
 func reset_to_original ()-> void:
 	for row in range(original_setup.size()):
 		for col in range(original_setup[row].size()) :
-			set_cell(Vector2i(col, row), 0, original_setup[row][col])
+			set_cell(Vector2i(col, row), source_id, original_setup[row][col])

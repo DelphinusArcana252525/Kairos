@@ -17,3 +17,6 @@ func _init(layer_id: String, type: types, pos: Vector2i, tile_type: Vector2i = N
 	self.type = type
 	self.tile_type = tile_type
 	self.pos = pos
+
+func _to_string() -> String:
+	return "Map_Change( layer: " + layer_id + ", type: " + str(type) + ", pos: " + str(pos) + ", tile_type: " + str(tile_type) + " )"

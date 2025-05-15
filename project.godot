@@ -17,7 +17,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 change="*res://Globals/change.gd"
-TimeEvent="*res://time_event.gd"
+TimeEvent="*res://Globals/time_event.gd"
 
 [display]
 

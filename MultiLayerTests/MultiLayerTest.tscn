@@ -1,0 +1,16 @@
+[gd_scene load_steps=5 format=3 uid="uid://cekkg3ii1ivep"]
+
+[ext_resource type="Script" path="res://MultiLayerTests/multi_layer_test.gd" id="1_gf5wq"]
+[ext_resource type="PackedScene" uid="uid://d1esn3bnt2i30" path="res://MultiLayerTests/timeline_manager.tscn" id="2_lwncl"]
+[ext_resource type="PackedScene" uid="uid://dxc26ku8ynoxy" path="res://MultiLayerTests/Room1/room_1.tscn" id="3_iij26"]
+[ext_resource type="PackedScene" uid="uid://bn75ofltsmvyn" path="res://character_body_2d.tscn" id="4_safoo"]
+
+[node name="MultiLayerTest" type="Node2D"]
+script = ExtResource("1_gf5wq")
+
+[node name="TimelineManager" parent="." instance=ExtResource("2_lwncl")]
+
+[node name="Room1" parent="." instance=ExtResource("3_iij26")]
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("4_safoo")]
+position = Vector2(42, 512)
