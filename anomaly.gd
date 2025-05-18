@@ -15,5 +15,6 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 	
-func takeDamage(dmg) -> void:
+func take_damage(dmg) -> void:
 	hp -= dmg
+	print("Anomaly health: " + str(hp))

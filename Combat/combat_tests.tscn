@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://b22cdtw1ih4fu"]
+
+[ext_resource type="PackedScene" uid="uid://cox6t0jkt6a08" path="res://SingleLayerTests/world.tscn" id="1_6cdnr"]
+[ext_resource type="PackedScene" uid="uid://dgm1gmnfa6epm" path="res://Combat/Projectile.tscn" id="2_6dfkl"]
+[ext_resource type="PackedScene" uid="uid://bn75ofltsmvyn" path="res://character_body_2d.tscn" id="3_v46r8"]
+[ext_resource type="PackedScene" uid="uid://dtnupx8pdxssx" path="res://anomaly.tscn" id="4_su8gs"]
+
+[node name="CombatTests" type="Node2D"]
+
+[node name="World" parent="." instance=ExtResource("1_6cdnr")]
+
+[node name="Projectile" parent="." instance=ExtResource("2_6dfkl")]
+position = Vector2(48, 440)
+damage = 30.0
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("3_v46r8")]
+position = Vector2(144, 512)
+
+[node name="Anomaly" parent="." instance=ExtResource("4_su8gs")]
+position = Vector2(384, 342)
+scale = Vector2(0.2, 0.2)
