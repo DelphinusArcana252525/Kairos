@@ -17,5 +17,5 @@ damage = 30.0
 position = Vector2(144, 512)
 
 [node name="Anomaly" parent="." instance=ExtResource("4_su8gs")]
-position = Vector2(384, 342)
+position = Vector2(416, 416)
 scale = Vector2(0.2, 0.2)

@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends StaticBody2D
 
 
 const SPEED = 300.0
@@ -13,7 +13,6 @@ func _physics_process(delta: float) -> void:
 	
 	pass
 
-	move_and_slide()
 	
 func take_damage(dmg) -> void:
 	hp -= dmg
