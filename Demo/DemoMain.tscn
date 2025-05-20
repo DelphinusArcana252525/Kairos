@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://c3afy6pn6igrs"]
+
+[ext_resource type="Script" path="res://Demo/demo_main.gd" id="1_slaxo"]
+[ext_resource type="PackedScene" uid="uid://dv12feknqb647" path="res://Era_Timer/Era_Timer.tscn" id="2_i3vta"]
+[ext_resource type="PackedScene" uid="uid://cwasm1upyr6bc" path="res://Era_Timer/Fade.tscn" id="3_p61th"]
+[ext_resource type="PackedScene" uid="uid://d1esn3bnt2i30" path="res://MultiLayerTests/timeline_manager.tscn" id="4_t0ve1"]
+
+[node name="DemoMain" type="Node2D"]
+script = ExtResource("1_slaxo")
+
+[node name="EraTimer" parent="." instance=ExtResource("2_i3vta")]
+max_max_time = 15
+
+[node name="FadeIn" parent="." instance=ExtResource("3_p61th")]
+visible = false
+
+[node name="FadeOut" parent="." instance=ExtResource("3_p61th")]
+visible = false
+fade_out = true
+
+[node name="TimelineManager" parent="." instance=ExtResource("4_t0ve1")]
+
+[connection signal="timeout" from="EraTimer" to="." method="_on_era_timer_timeout"]
+[connection signal="full_fade" from="FadeIn" to="." method="_on_fade_in_full_fade"]
+[connection signal="full_fade" from="FadeOut" to="." method="_on_fade_out_full_fade"]

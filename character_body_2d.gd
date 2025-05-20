@@ -41,7 +41,6 @@ func fire_projectile () -> void:
 	var proj = proj_scene.instantiate()
 	var angle = atan2(get_global_mouse_position().y - get_global_transform().origin.y, 
 		get_global_mouse_position().x - get_global_transform().origin.x)
-	atan2(0,1) # is in radians
 	# get the right angle
 	var direction = Vector2(cos(angle), sin(angle))
 	# make it not hit itself
