@@ -1,12 +1,13 @@
 extends StaticBody2D
 
 
-var speed = 2
+var speed = 200
 const JUMP_VELOCITY = -400.0
 var direct_vect
 var phase = 0
 var is_hostile : bool = false
 var goal_pos : Vector2 = Vector2(0,0)
+var proj_scene = preload("res://Combat/Projectile.tscn")
 
 @export var hp : int
 
@@ -15,9 +16,9 @@ var goal_pos : Vector2 = Vector2(0,0)
 func _physics_process(delta: float) -> void:
 	if(is_goal_met(goal_pos) or goal_pos == Vector2(0,0)):
 		move_random()
+		fire_projectile()
 		print("changed goal")
-	self.position += direct_vect * speed
-	
+	self.position += direct_vect * speed * delta
 	pass
 
 func _ready() -> void:
@@ -37,7 +38,7 @@ func move_random() -> void:
 	get_direction(goal)
 	goal_pos = goal
 	if(is_hostile):
-		speed = 5
+		speed = 400
 
 	
 func get_direction(goal) -> void:
@@ -55,3 +56,19 @@ func reset() -> void:
 func is_goal_met(goal) -> bool:
 	return abs(self.position.x - goal.x) < 5 and abs(self.position.y - goal.y) < 5
 	
+	
+func fire_projectile () -> void:
+	var proj = proj_scene.instantiate()
+	var proj_v = 500
+
+	
+	var direction = Vector2(1,1)
+	proj.position = self.position + 50*direction
+	#direction = #get character position - self.position
+	#direction *= 1/(len(direction)) 
+	#proj.velocity = proj_v * direction
+	# make the right damage
+	proj.damage = 15
+	proj.velocity = direction * proj_v
+	get_parent().add_child(proj)
+	print("projectile fired")
