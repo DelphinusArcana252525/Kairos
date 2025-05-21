@@ -1,25 +1,46 @@
-[gd_scene load_steps=5 format=3 uid="uid://c3afy6pn6igrs"]
+[gd_scene load_steps=7 format=3 uid="uid://c3afy6pn6igrs"]
 
 [ext_resource type="Script" path="res://Demo/demo_main.gd" id="1_slaxo"]
 [ext_resource type="PackedScene" uid="uid://dv12feknqb647" path="res://Era_Timer/Era_Timer.tscn" id="2_i3vta"]
 [ext_resource type="PackedScene" uid="uid://cwasm1upyr6bc" path="res://Era_Timer/Fade.tscn" id="3_p61th"]
 [ext_resource type="PackedScene" uid="uid://d1esn3bnt2i30" path="res://MultiLayerTests/timeline_manager.tscn" id="4_t0ve1"]
+[ext_resource type="PackedScene" uid="uid://crl11tqka01qg" path="res://hallway.tscn" id="5_bmepm"]
+[ext_resource type="PackedScene" uid="uid://bn75ofltsmvyn" path="res://character_body_2d.tscn" id="6_ac6oi"]
 
 [node name="DemoMain" type="Node2D"]
 script = ExtResource("1_slaxo")
 
-[node name="EraTimer" parent="." instance=ExtResource("2_i3vta")]
+[node name="TimelineManager" parent="." instance=ExtResource("4_t0ve1")]
+
+[node name="hallway" parent="." instance=ExtResource("5_bmepm")]
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("6_ac6oi")]
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+zoom = Vector2(2, 2)
+limit_left = -168
+limit_top = -160
+limit_right = 952
+limit_bottom = 320
+position_smoothing_speed = 50.0
+rotation_smoothing_speed = 50.0
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="EraTimer" parent="HUD" instance=ExtResource("2_i3vta")]
+position = Vector2(0, 1)
 max_max_time = 15
 
-[node name="FadeIn" parent="." instance=ExtResource("3_p61th")]
+[node name="FadeIn" parent="HUD" instance=ExtResource("3_p61th")]
 visible = false
 
-[node name="FadeOut" parent="." instance=ExtResource("3_p61th")]
+[node name="FadeOut" parent="HUD" instance=ExtResource("3_p61th")]
 visible = false
 fade_out = true
 
-[node name="TimelineManager" parent="." instance=ExtResource("4_t0ve1")]
+[node name="PositionFinder" type="Node2D" parent="."]
+position = Vector2(952, -160)
 
-[connection signal="timeout" from="EraTimer" to="." method="_on_era_timer_timeout"]
-[connection signal="full_fade" from="FadeIn" to="." method="_on_fade_in_full_fade"]
-[connection signal="full_fade" from="FadeOut" to="." method="_on_fade_out_full_fade"]
+[connection signal="timeout" from="HUD/EraTimer" to="." method="_on_era_timer_timeout"]
+[connection signal="full_fade" from="HUD/FadeIn" to="." method="_on_fade_in_full_fade"]
+[connection signal="full_fade" from="HUD/FadeOut" to="." method="_on_fade_out_full_fade"]

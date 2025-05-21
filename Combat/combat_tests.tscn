@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cox6t0jkt6a08" path="res://SingleLayerTests/world.tscn" id="1_6cdnr"]
 [ext_resource type="PackedScene" uid="uid://dgm1gmnfa6epm" path="res://Combat/Projectile.tscn" id="2_6dfkl"]
 [ext_resource type="PackedScene" uid="uid://bn75ofltsmvyn" path="res://character_body_2d.tscn" id="3_v46r8"]
-[ext_resource type="PackedScene" uid="uid://dtnupx8pdxssx" path="res://anomaly.tscn" id="4_su8gs"]
+[ext_resource type="PackedScene" uid="uid://fws1cnum2qty" path="res://anomaly.tscn" id="4_su8gs"]
 
 [node name="CombatTests" type="Node2D"]
 
