@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://d11laaratkjde"]
+
+[ext_resource type="Script" path="res://dialog_box.gd" id="1_5oeeo"]
+
+[node name="dialog_box" type="CanvasLayer"]
+script = ExtResource("1_5oeeo")
+
+[node name="background" type="ColorRect" parent="."]
+offset_left = 161.0
+offset_top = 418.0
+offset_right = 995.0
+offset_bottom = 599.0
+color = Color(0, 0, 0, 1)
+
+[node name="dialogue" type="Label" parent="."]
+offset_left = 188.0
+offset_top = 495.0
+offset_right = 967.0
+offset_bottom = 579.0
+
+[node name="name" type="Label" parent="."]
+offset_left = 287.0
+offset_top = 433.0
+offset_right = 844.0
+offset_bottom = 475.0
