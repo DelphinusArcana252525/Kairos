@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cwasm1upyr6bc"]
 
-[ext_resource type="Script" path="res://Era_Timer/fade.gd" id="1_ooatn"]
+[ext_resource type="Script" path="res://HUD_Stuff/fade.gd" id="1_ooatn"]
 
 [node name="Fade" type="Node2D"]
 script = ExtResource("1_ooatn")
