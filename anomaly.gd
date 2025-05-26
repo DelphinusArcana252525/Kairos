@@ -64,7 +64,7 @@ func fire_projectile () -> void:
 	
 	var direction = Vector2(1,1)
 	proj.position = self.position + 50*direction
-	#direction = #get character position - self.position
+	#direction = #get character position - proj.position
 	#direction *= 1/(len(direction)) 
 	#proj.velocity = proj_v * direction
 	# make the right damage

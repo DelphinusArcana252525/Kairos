@@ -20,9 +20,17 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
-	
-#yap function (he speaking, dialogue index increases until reaches last dialogue
+	#checks if the player is near sal
+	var pc = $character_body_2d/center.position
+	if(abs(pc.x - $sal.position.x) < 50 and abs(pc.y - $sal.position.y) < 50):
+		$dialog_box.show()
+		#sal yaps to the player
+		if(Input.is_action_just_pressed("talk")):
+			$dialog_box.updateMessage("Sal", curr_dialogue[dialogue_index])
+			if (dialogue_index < len(curr_dialogue) - 1):
+				dialogue_index += 1
+	else:
+		$dialog_box.hide()
 
 func set_sal(era):
 	if(era == 0):
@@ -35,4 +43,3 @@ func set_sal(era):
 	curr_sprite = load(sprites[era])
 	$sal_sprite.texture = curr_sprite
 	dialogue_index = 0
-		
