@@ -3,6 +3,8 @@ extends Node2D
 @onready var FadeIn = $HUD/FadeIn
 @onready var FadeOut = $HUD/FadeOut
 @onready var EraTimer = $HUD/EraTimer
+@onready var Anomaly = $Anomaly
+@onready var player = $CharacterBody2D
 
 @onready var timeline_manager: Timeline_Manager = $TimelineManager
 @onready var rooms: Array[Room] = [
@@ -20,6 +22,9 @@ func _ready() -> void:
 	for room in rooms:
 		room._ready()
 		timeline_manager.add_layers(room.time_affected_layers)
+	Anomaly.player = player
+	player.interactable_terrain = $hallway/doors_and_such
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

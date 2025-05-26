@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://c3afy6pn6igrs"]
+[gd_scene load_steps=8 format=3 uid="uid://c3afy6pn6igrs"]
 
 [ext_resource type="Script" path="res://Demo/demo_main.gd" id="1_slaxo"]
-[ext_resource type="PackedScene" uid="uid://dv12feknqb647" path="res://Era_Timer/Era_Timer.tscn" id="2_i3vta"]
-[ext_resource type="PackedScene" uid="uid://cwasm1upyr6bc" path="res://Era_Timer/Fade.tscn" id="3_p61th"]
+[ext_resource type="PackedScene" uid="uid://dv12feknqb647" path="res://HUD_Stuff/Era_Timer.tscn" id="2_i3vta"]
+[ext_resource type="PackedScene" uid="uid://cwasm1upyr6bc" path="res://HUD_Stuff/Fade.tscn" id="3_p61th"]
+[ext_resource type="PackedScene" uid="uid://fws1cnum2qty" path="res://anomaly.tscn" id="4_fcvmu"]
 [ext_resource type="PackedScene" uid="uid://d1esn3bnt2i30" path="res://MultiLayerTests/timeline_manager.tscn" id="4_t0ve1"]
 [ext_resource type="PackedScene" uid="uid://crl11tqka01qg" path="res://hallway.tscn" id="5_bmepm"]
 [ext_resource type="PackedScene" uid="uid://bn75ofltsmvyn" path="res://character_body_2d.tscn" id="6_ac6oi"]
@@ -14,10 +15,21 @@ script = ExtResource("1_slaxo")
 
 [node name="hallway" parent="." instance=ExtResource("5_bmepm")]
 
+[node name="Anomaly" parent="." instance=ExtResource("4_fcvmu")]
+base_speed = 100
+hostile_speed = 200
+high_limit = -160
+low_limit = 320
+left_limit = -168
+right_limit = 952
+
 [node name="CharacterBody2D" parent="." instance=ExtResource("6_ac6oi")]
+position = Vector2(63, 200)
+proj_distance = 60.0
+proj_v = 400.0
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
-zoom = Vector2(2, 2)
+zoom = Vector2(1.3, 1.3)
 limit_left = -168
 limit_top = -160
 limit_right = 952
@@ -29,7 +41,6 @@ rotation_smoothing_speed = 50.0
 
 [node name="EraTimer" parent="HUD" instance=ExtResource("2_i3vta")]
 position = Vector2(0, 1)
-max_max_time = 15
 
 [node name="FadeIn" parent="HUD" instance=ExtResource("3_p61th")]
 visible = false
