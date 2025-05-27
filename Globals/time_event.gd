@@ -35,5 +35,7 @@ static func new_rect (layer_id: String, type: Map_Change.types, start_pos: Vecto
 	for row in range (start_pos.y, end_pos.y + 1) : # +1 for inclusive
 		for col in range (start_pos.x, end_pos.x + 1) : # +1 for inclusive
 			effects.append(Map_Change.new(layer_id, type, Vector2i(col, row), tile_type))
-	#print(effects)
 	return Time_Event.new(effects, is_dependent, time_to_happen)
+
+func _to_string() -> String:
+	return "Event at era " + str(time_to_happen) + " that does " + str(effects)

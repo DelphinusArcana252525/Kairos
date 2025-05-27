@@ -4,20 +4,29 @@ class_name Time_Affected_Layer
 
 #Each PackedVector2Array is a row
 var original_setup: Array[PackedVector2Array]
-@export var max_width: int = 100
-@export var max_height: int = 50
+#@export var max_width: int = 100
+#@export var max_height: int = 50
+@export var max_left = 0
+@export var max_right = 0
+@export var max_top = 0
+@export var max_bottom = 0
 @export var layer_id: String = ""
 var source_id = 0 #TODO: be able to have different source ids
 @export var is_interactable: bool
+const ANY_TILE = Vector2i(-1,-1)
 
 func _init() -> void:
 	if layer_id == "":
 		layer_id = "Default Layer Name"
 	#Store the original setup
-	for row in range(max_height):
+	for row in range(max_top, max_bottom + 1):
 		var tile_row: PackedVector2Array = []
-		for col in range(max_width):
-			tile_row.append(get_cell_atlas_coords(Vector2i(col, row)))
+		for col in range(max_left, max_right + 1):
+			var tile_at_pos = get_cell_atlas_coords(Vector2i(col, row))
+			tile_row.append(tile_at_pos)
+			if tile_at_pos != ANY_TILE:
+				pass
+				#print(tile_at_pos)
 		original_setup.append(tile_row)
 
 
@@ -39,7 +48,7 @@ func apply_change (change: Map_Change) -> bool:
 		return false
 	match change.type:
 		Map_Change.types.DELETE:
-			if get_cell_atlas_coords(change.pos) == change.tile_type:
+			if get_cell_atlas_coords(change.pos) == change.tile_type or change.tile_type == ANY_TILE:
 				erase_cell(change.pos)
 				return true
 			return false
