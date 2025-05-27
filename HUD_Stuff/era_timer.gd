@@ -1,6 +1,7 @@
 extends Node2D
 
 @export var max_max_time = 60
+@export var min_max_time = 10
 @export var change_coeff = 0.75
 var time_elapsed = 0
 var current_max_time = 60
@@ -46,6 +47,8 @@ func update_label_text () -> void:
 
 func decrease_max_time () -> void:
 	current_max_time *= change_coeff
+	if current_max_time < min_max_time:
+		current_max_time = min_max_time
 
 func reset_max_time () -> void:
 	current_max_time = max_max_time

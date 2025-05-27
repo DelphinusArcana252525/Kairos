@@ -20,6 +20,7 @@ high_limit = -160
 low_limit = 320
 left_limit = -168
 right_limit = 952
+hp = 100
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("6_ac6oi")]
 z_index = 5
@@ -47,6 +48,8 @@ fade_out = true
 [node name="PositionFinder" type="Node2D" parent="."]
 position = Vector2(1152, 640)
 
+[connection signal="die" from="Anomaly" to="." method="_on_anomaly_die"]
+[connection signal="hit" from="Anomaly" to="." method="_on_anomaly_hit"]
 [connection signal="die" from="CharacterBody2D" to="." method="_on_character_body_2d_die"]
 [connection signal="door" from="CharacterBody2D" to="." method="_on_character_body_2d_door"]
 [connection signal="timeout" from="HUD/EraTimer" to="." method="_on_era_timer_timeout"]

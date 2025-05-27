@@ -23,6 +23,8 @@ var room_changed: bool = false
 ]
 var max_eras = 3 # exclusive of this number, inclusive of 0, so eras 0, 1, and 2
 const PLATFORM_TILE = Vector2i(0,1)
+@export var anomaly_base_hp = 100
+@export var player_base_hp = 100
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -47,6 +49,7 @@ func change_eras (era: int) -> void:
 	player.interactable_terrain = get_first_interactable_layer(current_room)
 	set_camera_limits()
 	set_anomaly_limits()
+	Anomaly.hp = randi_range(0,anomaly_base_hp)
 
 func _on_era_timer_timeout() -> void:
 	FadeIn.reset_fade()
@@ -139,4 +142,13 @@ func _on_character_body_2d_door() -> void:
 func _on_character_body_2d_die() -> void:
 	current_room_index = 0
 	room_changed = true
+	player.health = player_base_hp
 	_on_era_timer_timeout()
+
+
+func _on_anomaly_hit() -> void:
+	EraTimer.decrease_max_time()
+
+
+func _on_anomaly_die() -> void:
+	EraTimer.reset_max_time()
