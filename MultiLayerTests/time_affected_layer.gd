@@ -8,6 +8,7 @@ var original_setup: Array[PackedVector2Array]
 @export var max_height: int = 50
 @export var layer_id: String = ""
 var source_id = 0 #TODO: be able to have different source ids
+@export var is_interactable: bool
 
 func _init() -> void:
 	if layer_id == "":

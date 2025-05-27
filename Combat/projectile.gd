@@ -1,5 +1,7 @@
 extends Area2D
 
+class_name Projectile
+
 @export var velocity: Vector2
 @export var damage: float
 @export var launcher: String = "default"

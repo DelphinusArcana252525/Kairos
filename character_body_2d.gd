@@ -3,7 +3,7 @@ extends CharacterBody2D
 class_name Player
 
 const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
+const JUMP_VELOCITY = -510.0
 const LADDER_SPEED = 200.0
 @export var health: float = 100
 var proj_scene = preload("res://Combat/Projectile.tscn")
@@ -13,40 +13,49 @@ var proj_scene = preload("res://Combat/Projectile.tscn")
 @export var proj_dmg: float = 10
 var interactable_terrain: Time_Affected_Layer
 const LADDERS = [Vector2i(0,43), Vector2i(0,44), Vector2i(0,45)]
+const DOORS = [Vector2i(0,31), Vector2i(0,32), Vector2i(0,33),
+			   Vector2i(1,31), Vector2i(1,32), Vector2i(1,33)]
+var is_locked = false
 signal hit
 signal die
+signal door
 
 func _physics_process(delta: float) -> void:
-	# Add the gravity.
-	if not (is_on_floor() or is_on_ladder()):
-		velocity += get_gravity() * delta
-	
-	if is_on_ladder():
-		if Input.is_action_pressed("jump"):
-			velocity.y = -LADDER_SPEED
-		elif Input.is_action_pressed("down"):
-			velocity.y = LADDER_SPEED
+	if not is_locked:
+		#print(get_gravity())
+		# Add the gravity.
+		if not (is_on_floor() or is_on_ladder()):
+			velocity += get_gravity() * delta
+		if is_on_ladder():
+			if Input.is_action_pressed("jump"):
+				velocity.y = -LADDER_SPEED
+			elif Input.is_action_pressed("down"):
+				velocity.y = LADDER_SPEED
+			else:
+				velocity.y = 0
+		
+		# Handle jump.
+		if Input.is_action_just_pressed("jump") and is_on_floor():
+			velocity.y = JUMP_VELOCITY
+		
+		# Get the input direction and handle the movement/deceleration.
+		# As good practice, you should replace UI actions with custom gameplay actions.
+		var direction := Input.get_axis("left", "right")
+		if direction:
+			velocity.x = direction * SPEED
 		else:
-			velocity.y = 0
-	
-	# Handle jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-	
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction := Input.get_axis("left", "right")
-	if direction:
-		velocity.x = direction * SPEED
+			velocity.x = move_toward(velocity.x, 0, SPEED)
+		
+		move_and_slide()
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-	
-	move_and_slide()
+		velocity = Vector2.ZERO
 
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("launch_projectile"):
-		fire_projectile()
-	print(is_on_ladder())
+	if not is_locked:
+		if Input.is_action_just_pressed("launch_projectile"):
+			fire_projectile()
+		if Input.is_action_just_pressed("down") and is_on_door():
+			door.emit()
 
 func take_damage (damage: float, proj_launcher: String) -> bool:
 	health -= damage
@@ -72,6 +81,21 @@ func fire_projectile () -> void:
 	get_parent().add_child(proj)
 
 func is_on_ladder() -> bool:
+	if interactable_terrain == null:
+		return false
 	var map_coords = interactable_terrain.local_to_map(interactable_terrain.to_local(get_global_transform().origin))
 	var tile_type = interactable_terrain.get_cell_atlas_coords(map_coords)
 	return tile_type in LADDERS
+
+func is_on_door() -> bool:
+	if interactable_terrain == null:
+		return false
+	var map_coords = interactable_terrain.local_to_map(interactable_terrain.to_local(get_global_transform().origin))
+	var tile_type = interactable_terrain.get_cell_atlas_coords(map_coords)
+	return tile_type in DOORS
+
+func lock () -> void:
+	is_locked = true
+
+func unlock () -> void:
+	is_locked = false

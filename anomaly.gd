@@ -16,18 +16,20 @@ var player: Player
 @export var right_limit: int = 1152
 
 @export var hp : int
+var is_locked = false
 
 signal hit
 signal die
 
-#rewrite this so he doesnt move via keyboard
+
 #make him move randomly for now
 func _physics_process(delta: float) -> void:
-	if(is_goal_met(goal_pos) or goal_pos == Vector2(0,0)):
-		move_random()
-		fire_projectile()
-		print("changed goal")
-	self.position += direct_vect * speed * delta
+	if not is_locked:
+		if(is_goal_met(goal_pos) or goal_pos == Vector2(0,0)):
+			move_random()
+			fire_projectile()
+			#print("changed goal")
+		self.position += direct_vect * speed * delta
 
 func _ready() -> void:
 	move_random()
@@ -85,10 +87,17 @@ func fire_projectile () -> void:
 	proj.velocity = direction * proj_v
 	proj.launcher = "Anomaly"
 	get_parent().add_child(proj)
-	print("projectile fired")
+	#print("projectile fired")
 
 func get_player_pos () -> Vector2:
 	if player == null:
 		print("Anomaly has no player")
 		return Vector2(0,0)
 	return player.position
+
+
+func lock () -> void:
+	is_locked = true
+
+func unlock() -> void:
+	is_locked = false

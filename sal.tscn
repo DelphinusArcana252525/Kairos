@@ -1,7 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bn6li0cummeyw"]
+[gd_scene load_steps=4 format=3 uid="uid://d2yvljt7uwmua"]
 
 [ext_resource type="Script" path="res://sal.gd" id="1_srog4"]
-[ext_resource type="PackedScene" uid="uid://d11laaratkjde" path="res://dialog_box.tscn" id="2_b2m02"]
+[ext_resource type="PackedScene" path="res://dialog_box.tscn" id="2_b2m02"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bbgap"]
 size = Vector2(57, 87)

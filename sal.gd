@@ -10,6 +10,7 @@ var dialogue_2 = ["It's the sekeleton of an overzealous explorer.", "I wonder wh
 var curr_dialogue
 var dialogue_index
 var curr_sprite
+var pc: Player
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -21,8 +22,9 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	#checks if the player is near sal
-	var pc = $character_body_2d/center.position
-	if(abs(pc.x - $sal.position.x) < 50 and abs(pc.y - $sal.position.y) < 50):
+	#var pc = $character_body_2d/center.position
+	
+	if(abs(pc.position.x - self.position.x) < 50 and abs(pc.position.y - self.position.y) < 50):
 		$dialog_box.show()
 		#sal yaps to the player
 		if(Input.is_action_just_pressed("talk")):

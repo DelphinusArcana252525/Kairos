@@ -2,16 +2,15 @@ extends Node2D
 
 class_name Room
 
-var time_affected_layers: Array[Time_Affected_Layer] = [
-	
-]
+@export var top_limit = 0
+@export var bottom_limit = 0
+@export var left_limit = 0
+@export var right_limit = 0
+@export var start_pos: Vector2
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	for layer in time_affected_layers:
-		layer._init()
-		layer._ready()
 	pass # Replace with function body.
 
 
