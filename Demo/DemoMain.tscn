@@ -38,6 +38,12 @@ rotation_smoothing_speed = 50.0
 [node name="EraTimer" parent="HUD" instance=ExtResource("2_i3vta")]
 position = Vector2(0, 1)
 
+[node name="HealthDispaly" type="Label" parent="HUD"]
+offset_left = 832.0
+offset_right = 1152.0
+offset_bottom = 24.0
+horizontal_alignment = 2
+
 [node name="FadeIn" parent="HUD" instance=ExtResource("3_p61th")]
 visible = false
 
@@ -48,6 +54,7 @@ fade_out = true
 [node name="PositionFinder" type="Node2D" parent="."]
 position = Vector2(1152, 640)
 
+[connection signal="win" from="." to="." method="_on_win"]
 [connection signal="die" from="Anomaly" to="." method="_on_anomaly_die"]
 [connection signal="hit" from="Anomaly" to="." method="_on_anomaly_hit"]
 [connection signal="die" from="CharacterBody2D" to="." method="_on_character_body_2d_die"]

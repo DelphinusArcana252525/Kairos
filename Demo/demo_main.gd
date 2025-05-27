@@ -25,6 +25,7 @@ var max_eras = 3 # exclusive of this number, inclusive of 0, so eras 0, 1, and 2
 const PLATFORM_TILE = Vector2i(0,1)
 @export var anomaly_base_hp = 100
 @export var player_base_hp = 100
+signal win
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -34,8 +35,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	#print(Anomaly.position)
-	pass
+	$HUD/HealthDispaly.text = "Health: " + str(player.health)
 
 func random_era () -> void:
 	change_eras(randi_range(0, max_eras - 1))
@@ -133,10 +133,14 @@ func set_anomaly_limits () -> void:
 	Anomaly.left_limit = current_room.left_limit * current_room.scale.x
 	Anomaly.right_limit = current_room.right_limit * current_room.scale.x
 
-func _on_character_body_2d_door() -> void:
-	current_room_index = 1
-	room_changed = true
-	_on_era_timer_timeout()
+func _on_character_body_2d_door(door_id: int) -> void:
+	if door_id < room_scenes.size():
+		print(door_id)
+		current_room_index = door_id
+		room_changed = true
+		_on_era_timer_timeout()
+	else:
+		win.emit()
 
 
 func _on_character_body_2d_die() -> void:
@@ -152,3 +156,9 @@ func _on_anomaly_hit() -> void:
 
 func _on_anomaly_die() -> void:
 	EraTimer.reset_max_time()
+	Anomaly.lock()
+	Anomaly.hide()
+
+
+func _on_win() -> void:
+	print("Win!")

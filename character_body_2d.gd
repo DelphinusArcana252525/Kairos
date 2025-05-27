@@ -15,11 +15,15 @@ var proj_scene = preload("res://Combat/Projectile.tscn")
 var interactable_terrain: Time_Affected_Layer
 const LADDERS = [Vector2i(0,43), Vector2i(0,44), Vector2i(0,45)]
 const DOORS = [Vector2i(0,31), Vector2i(0,32), Vector2i(0,33),
-			   Vector2i(1,31), Vector2i(1,32), Vector2i(1,33)]
+			   Vector2i(1,31), Vector2i(1,32), Vector2i(1,33),
+			   Vector2i(0,28), Vector2i(0,29), Vector2i(0,30),
+			   Vector2i(1,28), Vector2i(1,29), Vector2i(1,30),
+			   Vector2i(2,31), Vector2i(2,32), Vector2i(2,33),
+			   Vector2i(3,31), Vector2i(3,32), Vector2i(3,33)]
 var is_locked = false
 signal hit
 signal die
-signal door
+signal door(door_id: int)
 
 func _physics_process(delta: float) -> void:
 	if not is_locked:
@@ -57,7 +61,7 @@ func _process(delta: float) -> void:
 		if Input.is_action_just_pressed("launch_projectile"):
 			fire_projectile()
 		if Input.is_action_just_pressed("down") and is_on_door():
-			door.emit()
+			door.emit(get_door_id())
 
 func take_damage (damage: float, proj_launcher: String) -> bool:
 	health -= damage
@@ -95,6 +99,12 @@ func is_on_door() -> bool:
 	var map_coords = interactable_terrain.local_to_map(interactable_terrain.to_local(get_global_transform().origin))
 	var tile_type = interactable_terrain.get_cell_atlas_coords(map_coords)
 	return tile_type in DOORS
+
+func get_door_id () -> int:
+	if interactable_terrain == null:
+		return -1
+	var map_coords = interactable_terrain.local_to_map(interactable_terrain.to_local(get_global_transform().origin))
+	return interactable_terrain.get_cell_tile_data(map_coords).get_custom_data("Door_ID")
 
 func lock () -> void:
 	is_locked = true
