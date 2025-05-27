@@ -47,6 +47,5 @@ func set_sal(era):
 		curr_dialogue = dialogue_2
 	
 	curr_sprite = load(sprites[era])
-	print(curr_sprite)
 	$sal_sprite.texture = curr_sprite
 	dialogue_index = 0

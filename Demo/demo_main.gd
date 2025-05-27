@@ -20,35 +20,7 @@ var rooms: Array[Room] = [
 var current_room_index = 0
 var current_room: Room
 var room_changed: bool = false
-const HALLWAY_INTERACTABLES = "hallway_doors_and_such"
-const ANY_TILE = Vector2i(-1,-1)
-const LADDER_TOP = Vector2i(0,43)
-const LADDER_MIDDLE = Vector2i(0,44)
-const LADDER_BOTTOM = Vector2i(0,45)
-var timeline: Array[Time_Event] = [
-	################## Hallway stuff
-	# Platform is always there
-	# Ladder shows up in era 1
-	# Door goes away in era 1
-	
-	# Remove door in era 1
-	Time_Event.new_rect(HALLWAY_INTERACTABLES, Map_Change.types.DELETE, 
-						Vector2i(29,-4), Vector2i(30,-2), 
-						ANY_TILE, false, 1),
-	# Remove ladder at start
-	Time_Event.new_rect(HALLWAY_INTERACTABLES, Map_Change.types.DELETE, 
-						Vector2i(32,-2), Vector2i(32,8), 
-						ANY_TILE, false, 0),
-	# Add ladder in era 1
-	Time_Event.new_rect(HALLWAY_INTERACTABLES, Map_Change.types.ADD,
-						Vector2i(32,-1), Vector2i(32,7),
-						LADDER_MIDDLE, false, 1),
-	Time_Event.new([
-		Map_Change.new(HALLWAY_INTERACTABLES, Map_Change.types.ADD, Vector2i(32,-2), LADDER_TOP),
-		Map_Change.new(HALLWAY_INTERACTABLES, Map_Change.types.ADD, Vector2i(32,8), LADDER_BOTTOM),
-	], false, 1)
-	################## Tower stuff
-]
+var timeline: Array[Time_Event] = Timeline_Manager.DEFAULT_TIMELINE
 var max_eras = 3 # exclusive of this number, inclusive of 0, so eras 0, 1, and 2
 const PLATFORM_TILE = Vector2i(0,1)
 @export var anomaly_base_hp = 100
@@ -67,8 +39,20 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	$HUD/HealthDispaly.text = "Health: " + str(player.health)
 	if Input.is_action_just_pressed("reset_room"):
-		player.position = current_room.start_pos
+		player.position = current_room.start_pos * current_room.scale.x
 		_on_era_timer_timeout()
+	if Input.is_action_just_pressed("Era0"):
+		lock_and_clear()
+		change_eras(0)
+		fade_out()
+	if Input.is_action_just_pressed("Era1"):
+		lock_and_clear()
+		change_eras(1)
+		fade_out()
+	if Input.is_action_just_pressed("Era2"):
+		lock_and_clear()
+		change_eras(2)
+		fade_out()
 
 func random_era () -> void:
 	change_eras(randi_range(0, max_eras - 1))
@@ -89,19 +73,23 @@ func change_eras (era: int) -> void:
 func _on_era_timer_timeout() -> void:
 	FadeIn.reset_fade()
 	FadeIn.show()
+	lock_and_clear()
+
+func lock_and_clear () -> void:
 	player.lock()
 	Anomaly.lock()
 	clear_projectiles()
 
-
 func _on_fade_in_full_fade() -> void:
 	random_era()
+	fade_out()
+
+func fade_out () -> void:
 	FadeOut.reset_fade()
 	FadeOut.set_label_text("Era " + str($TimelineManager.current_era))
 	FadeOut.show()
 	FadeIn.hide()
 	EraTimer.reset_current_time()
-
 
 func _on_fade_out_full_fade() -> void:
 	FadeOut.hide()
