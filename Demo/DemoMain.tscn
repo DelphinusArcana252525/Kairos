@@ -11,9 +11,6 @@
 [node name="DemoMain" type="Node2D"]
 script = ExtResource("1_slaxo")
 
-[node name="Sal" parent="." node_paths=PackedStringArray("pc") instance=ExtResource("7_dlhyb")]
-pc = NodePath("../CharacterBody2D")
-
 [node name="TimelineManager" parent="." instance=ExtResource("4_t0ve1")]
 
 [node name="Anomaly" parent="." instance=ExtResource("4_fcvmu")]
@@ -57,6 +54,10 @@ fade_out = true
 
 [node name="PositionFinder" type="Node2D" parent="."]
 position = Vector2(1152, 640)
+
+[node name="Sal" parent="." node_paths=PackedStringArray("pc") instance=ExtResource("7_dlhyb")]
+position = Vector2(15, 3)
+pc = NodePath("../CharacterBody2D")
 
 [connection signal="win" from="." to="." method="_on_win"]
 [connection signal="die" from="Anomaly" to="." method="_on_anomaly_die"]

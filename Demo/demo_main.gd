@@ -6,6 +6,7 @@ extends Node2D
 @onready var Anomaly = $Anomaly
 @onready var player: Player = $CharacterBody2D
 @onready var camera = $CharacterBody2D/Camera2D
+@onready var sal = $Sal
 
 @onready var timeline_manager: Timeline_Manager = $TimelineManager
 var room_scenes: Array = [
@@ -80,6 +81,7 @@ func change_eras (era: int) -> void:
 	set_anomaly_limits()
 	Anomaly.hp = randi_range(0,anomaly_base_hp)
 	Anomaly.show()
+	sal.set_sal(era)
 
 func _on_era_timer_timeout() -> void:
 	FadeIn.reset_fade()

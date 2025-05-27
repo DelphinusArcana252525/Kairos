@@ -19,5 +19,8 @@ func _process(delta: float) -> void:
 func updateMessage(name, dialogue):
 	dialogueText.set_text(dialogue)
 	nameText.set_text(name)
+
+#func displayMessage():
+	
 	
 	
