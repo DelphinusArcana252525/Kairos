@@ -1224,4 +1224,4 @@ script = ExtResource("3_uh3hg")
 layer_id = "hallway_platforms"
 
 [node name="PositionFinder" type="Node2D" parent="."]
-position = Vector2(56, 80)
+position = Vector2(480, 96)

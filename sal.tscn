@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://d2yvljt7uwmua"]
+[gd_scene load_steps=5 format=3 uid="uid://d2yvljt7uwmua"]
 
 [ext_resource type="Script" path="res://sal.gd" id="1_srog4"]
 [ext_resource type="PackedScene" path="res://dialog_box.tscn" id="2_b2m02"]
+[ext_resource type="Texture2D" uid="uid://dn8pyqsxkm2vr" path="res://icon.svg" id="2_eb6uk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bbgap"]
 size = Vector2(57, 87)
@@ -14,5 +15,8 @@ position = Vector2(18.5, 33.5)
 shape = SubResource("RectangleShape2D_bbgap")
 
 [node name="sal_sprite" type="Sprite2D" parent="."]
+position = Vector2(20, 36)
+scale = Vector2(0.4375, 0.6875)
+texture = ExtResource("2_eb6uk")
 
 [node name="dialog_box" parent="." instance=ExtResource("2_b2m02")]

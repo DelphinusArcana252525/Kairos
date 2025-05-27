@@ -6,6 +6,8 @@ extends Node2D
 @onready var Anomaly = $Anomaly
 @onready var player: Player = $CharacterBody2D
 @onready var camera = $CharacterBody2D/Camera2D
+@onready var sal: Sal = $Sal
+var sal_pos = Vector2(480,96) * 2 # * 2 because scaling in tilemaplayers
 
 @onready var timeline_manager: Timeline_Manager = $TimelineManager
 var room_scenes: Array = [
@@ -58,6 +60,8 @@ func _ready() -> void:
 	timeline_manager.construct(timeline, 0)
 	change_eras(0)
 	Anomaly.player = player
+	sal.pc = player
+	sal.position = sal_pos
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -80,6 +84,7 @@ func change_eras (era: int) -> void:
 	set_anomaly_limits()
 	Anomaly.hp = randi_range(0,anomaly_base_hp)
 	Anomaly.show()
+	sal.set_sal(era)
 
 func _on_era_timer_timeout() -> void:
 	FadeIn.reset_fade()
@@ -138,6 +143,8 @@ func clear_unused_rooms () -> void:
 			current_room = rooms[i]
 			if room_changed:
 				player.position = current_room.start_pos * current_room.scale
+			if current_room_index == 0:
+				current_room.add_child(sal)
 
 func get_first_interactable_layer (room: Room) -> Time_Affected_Layer:
 	for layer in get_time_affected_layers(room):

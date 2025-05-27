@@ -7,7 +7,7 @@ var nameText
 func _ready() -> void:
 	dialogueText = $dialogue
 	nameText = $name
-	updateMessage("Joe", "I like oats!")
+	#updateMessage("Joe", "I like oats!")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -19,5 +19,3 @@ func _process(delta: float) -> void:
 func updateMessage(name, dialogue):
 	dialogueText.set_text(dialogue)
 	nameText.set_text(name)
-	
-	

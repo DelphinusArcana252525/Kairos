@@ -1,7 +1,9 @@
 extends Area2D
 
+class_name Sal
+
 #eras 0, 1, 2
-var sprites = ["res://assets/Kid_Sal.png", "res://assets/Adult_Sal.png", "res://assets/Dead_Sal.png"]
+var sprites = ["res://Assets/Kid_Sal.png", "res://Assets/Adult_Sal.png", "res://Assets/Dead_Sal.png"]
 
 var dialogue_0 = ["Hey there! I'm Sal, who're you?", "You new 'round here?", "Alright, see you around!"]
 var dialogue_1 = ["My goodness, it's you!", "I knew I didn't make you up. But man, you haven't aged a day!", "I'm Sal...don't you rememeber me?"]
@@ -10,13 +12,12 @@ var dialogue_2 = ["It's the sekeleton of an overzealous explorer.", "I wonder wh
 var curr_dialogue
 var dialogue_index
 var curr_sprite
-var pc: Player
+var pc: Player = Player.new()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	set_sal(2)
+	set_sal(0)
 	print(curr_dialogue[dialogue_index])
-	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -43,5 +44,6 @@ func set_sal(era):
 		curr_dialogue = dialogue_2
 	
 	curr_sprite = load(sprites[era])
+	print(curr_sprite)
 	$sal_sprite.texture = curr_sprite
 	dialogue_index = 0
