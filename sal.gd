@@ -27,7 +27,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	#checks if the player is near sal
 	#var pc = $character_body_2d/center.position
-	#print(pc.position)
 	if(abs(pc.position.x - self.position.x) < 50 and abs(pc.position.y - self.position.y) < 50):
 		
 		#sal yaps to the player

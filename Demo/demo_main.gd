@@ -135,6 +135,7 @@ func update_timeline_manager () -> void:
 	for room in rooms:
 		timeline_manager.add_layers(get_time_affected_layers(room))
 
+# This thing does a lot more
 func clear_unused_rooms () -> void:
 	for i in range(rooms.size() - 1, -1, -1):
 		if i != current_room_index:
@@ -144,7 +145,9 @@ func clear_unused_rooms () -> void:
 			if room_changed:
 				player.position = current_room.start_pos * current_room.scale
 			if current_room_index == 0:
-				current_room.add_child(sal)
+				sal.show()
+			else:
+				sal.hide()
 
 func get_first_interactable_layer (room: Room) -> Time_Affected_Layer:
 	for layer in get_time_affected_layers(room):
