@@ -1,8 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://d2yvljt7uwmua"]
 
 [ext_resource type="Script" path="res://sal.gd" id="1_srog4"]
-[ext_resource type="PackedScene" path="res://dialog_box.tscn" id="2_b2m02"]
 [ext_resource type="Texture2D" uid="uid://dn8pyqsxkm2vr" path="res://icon.svg" id="2_eb6uk"]
+[ext_resource type="Texture2D" uid="uid://cc87i1yl1jq36" path="res://Assets/Kid_Sal.png" id="2_817gm"]
+[ext_resource type="PackedScene" uid="uid://d11laaratkjde" path="res://dialog_box.tscn" id="2_b2m02"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bbgap"]
 size = Vector2(57, 87)
@@ -11,12 +12,12 @@ size = Vector2(57, 87)
 script = ExtResource("1_srog4")
 
 [node name="collider" type="CollisionShape2D" parent="."]
-position = Vector2(18.5, 33.5)
+position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_bbgap")
 
 [node name="sal_sprite" type="Sprite2D" parent="."]
 position = Vector2(20, 36)
-scale = Vector2(0.4375, 0.6875)
-texture = ExtResource("2_eb6uk")
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_817gm")
 
 [node name="dialog_box" parent="." instance=ExtResource("2_b2m02")]
