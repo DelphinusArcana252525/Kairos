@@ -48,7 +48,6 @@ func go_to_era (new_era: int) -> void:
 	print("New era: " + str(new_era))
 	for layer in layers:
 		layer.reset_to_original()
-		print(layer.layer_id)
 	var era = 0
 	while era <= new_era:
 		for event in timeline:

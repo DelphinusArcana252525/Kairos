@@ -4,7 +4,7 @@ class_name Player
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -510.0
-const JUMP_DISPLACEMENT = -5.0
+const JUMP_DISPLACEMENT = -1.0
 const LADDER_SPEED = 200.0
 @export var health: float = 100
 var proj_scene = preload("res://Combat/Projectile.tscn")
@@ -42,7 +42,7 @@ func _physics_process(delta: float) -> void:
 		# Handle jump.
 		if Input.is_action_just_pressed("jump") and is_on_floor():
 			velocity.y = JUMP_VELOCITY
-			position.y += JUMP_DISPLACEMENT
+			
 		
 		# Get the input direction and handle the movement/deceleration.
 		# As good practice, you should replace UI actions with custom gameplay actions.
