@@ -10,12 +10,15 @@ var dialogue_2 = ["It's the sekeleton of an overzealous explorer.", "I wonder wh
 var curr_dialogue
 var dialogue_index
 var curr_sprite
-var pc: Player
+@export var pc: Player
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	set_sal(2)
+	$sal_sprite.show()
+	self.position = pc.position
 	print(curr_dialogue[dialogue_index])
+	#pc = $CharacterBody2D
 	pass # Replace with function body.
 
 
@@ -23,7 +26,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	#checks if the player is near sal
 	#var pc = $character_body_2d/center.position
-	
+	#print(pc.position)
 	if(abs(pc.position.x - self.position.x) < 50 and abs(pc.position.y - self.position.y) < 50):
 		$dialog_box.show()
 		#sal yaps to the player

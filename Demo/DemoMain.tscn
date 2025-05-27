@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c3afy6pn6igrs"]
+[gd_scene load_steps=8 format=3 uid="uid://c3afy6pn6igrs"]
 
 [ext_resource type="Script" path="res://Demo/demo_main.gd" id="1_slaxo"]
 [ext_resource type="PackedScene" uid="uid://dv12feknqb647" path="res://HUD_Stuff/Era_Timer.tscn" id="2_i3vta"]
@@ -6,9 +6,13 @@
 [ext_resource type="PackedScene" uid="uid://fws1cnum2qty" path="res://anomaly.tscn" id="4_fcvmu"]
 [ext_resource type="PackedScene" uid="uid://d1esn3bnt2i30" path="res://MultiLayerTests/timeline_manager.tscn" id="4_t0ve1"]
 [ext_resource type="PackedScene" uid="uid://bn75ofltsmvyn" path="res://character_body_2d.tscn" id="6_ac6oi"]
+[ext_resource type="PackedScene" uid="uid://d2yvljt7uwmua" path="res://sal.tscn" id="7_dlhyb"]
 
 [node name="DemoMain" type="Node2D"]
 script = ExtResource("1_slaxo")
+
+[node name="Sal" parent="." node_paths=PackedStringArray("pc") instance=ExtResource("7_dlhyb")]
+pc = NodePath("../CharacterBody2D")
 
 [node name="TimelineManager" parent="." instance=ExtResource("4_t0ve1")]
 
