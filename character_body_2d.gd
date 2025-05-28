@@ -21,38 +21,54 @@ const DOORS = [Vector2i(0,31), Vector2i(0,32), Vector2i(0,33),
 			   Vector2i(2,31), Vector2i(2,32), Vector2i(2,33),
 			   Vector2i(3,31), Vector2i(3,32), Vector2i(3,33)]
 var is_locked = false
+var is_flying = false
 signal hit
 signal die
 signal door(door_id: int)
 
 func _physics_process(delta: float) -> void:
 	if not is_locked:
-		#print(get_gravity())
-		# Add the gravity.
-		if not (is_on_floor() or is_on_ladder()):
-			velocity += get_gravity() * delta
-		if is_on_ladder():
+		if is_flying:
+			velocity = Vector2.ZERO
+			if Input.is_action_pressed("down"):
+				velocity += Vector2.DOWN
+			if Input.is_action_pressed("right"):
+				velocity += Vector2.RIGHT
+			if Input.is_action_pressed("left"):
+				velocity += Vector2.LEFT
 			if Input.is_action_pressed("jump"):
-				velocity.y = -LADDER_SPEED
-			elif Input.is_action_pressed("down"):
-				velocity.y = LADDER_SPEED
-			else:
-				velocity.y = 0
-		
-		# Handle jump.
-		if Input.is_action_just_pressed("jump") and is_on_floor():
-			velocity.y = JUMP_VELOCITY
-			
-		
-		# Get the input direction and handle the movement/deceleration.
-		# As good practice, you should replace UI actions with custom gameplay actions.
-		var direction := Input.get_axis("left", "right")
-		if direction:
-			velocity.x = direction * SPEED
+				velocity += Vector2.UP
+			if velocity != Vector2.ZERO:
+				velocity *= 1/velocity.length()
+			velocity *= SPEED
+			position += velocity * delta
 		else:
-			velocity.x = move_toward(velocity.x, 0, SPEED)
-		
-		move_and_slide()
+			#print(get_gravity())
+			# Add the gravity.
+			if not (is_on_floor() or is_on_ladder()):
+				velocity += get_gravity() * delta
+			if is_on_ladder():
+				if Input.is_action_pressed("jump"):
+					velocity.y = -LADDER_SPEED
+				elif Input.is_action_pressed("down"):
+					velocity.y = LADDER_SPEED
+				else:
+					velocity.y = 0
+			
+			# Handle jump.
+			if Input.is_action_just_pressed("jump") and is_on_floor():
+				velocity.y = JUMP_VELOCITY
+				
+			
+			# Get the input direction and handle the movement/deceleration.
+			# As good practice, you should replace UI actions with custom gameplay actions.
+			var direction := Input.get_axis("left", "right")
+			if direction:
+				velocity.x = direction * SPEED
+			else:
+				velocity.x = move_toward(velocity.x, 0, SPEED)
+			
+			move_and_slide()
 	else:
 		velocity = Vector2.ZERO
 
@@ -62,6 +78,10 @@ func _process(delta: float) -> void:
 			fire_projectile()
 		if Input.is_action_just_pressed("down") and is_on_door():
 			door.emit(get_door_id())
+	if Input.is_action_just_pressed("fly"):
+		is_flying = !is_flying
+	if Input.is_action_just_pressed("heal"):
+		health += 10
 
 func take_damage (damage: float, proj_launcher: String) -> bool:
 	health -= damage

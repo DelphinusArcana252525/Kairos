@@ -37,5 +37,16 @@ static func new_rect (layer_id: String, type: Map_Change.types, start_pos: Vecto
 			effects.append(Map_Change.new(layer_id, type, Vector2i(col, row), tile_type))
 	return Time_Event.new(effects, is_dependent, time_to_happen)
 
+const PLATFORM_LEFT = Vector2i(10,46)
+const PLATFORM_CENTER = Vector2i(11,46)
+const PLATFORM_RIGHT = Vector2(12,46)
+
+static func new_three_platform_add (center_pos: Vector2i, layer_id: String, time_to_happen: int) -> Time_Event:
+	return Time_Event.new([
+		Map_Change.new(layer_id, Map_Change.types.ADD, center_pos - Vector2i(1,0), PLATFORM_LEFT),
+		Map_Change.new(layer_id, Map_Change.types.ADD, center_pos, PLATFORM_CENTER),
+		Map_Change.new(layer_id, Map_Change.types.ADD, center_pos + Vector2i(1,0), PLATFORM_RIGHT),
+	], false, time_to_happen)
+
 func _to_string() -> String:
 	return "Event at era " + str(time_to_happen) + " that does " + str(effects)
