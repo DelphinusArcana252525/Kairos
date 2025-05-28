@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://cbjgimx8a21no"]
+
+[ext_resource type="Script" path="res://start_screen.gd" id="1_xce4m"]
+
+[node name="start_screen" type="CanvasLayer"]
+script = ExtResource("1_xce4m")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1162.0
+offset_bottom = 630.0
+
+[node name="Label" type="Label" parent="."]
+modulate = Color(0, 0, 0, 1)
+offset_left = 5.0
+offset_top = 4.0
+offset_right = 1158.0
+offset_bottom = 203.0
+text = "Kairos"
+horizontal_alignment = 1
+
+[node name="start_button" type="Button" parent="."]
+offset_left = 420.0
+offset_top = 203.0
+offset_right = 747.0
+offset_bottom = 338.0
+text = "Play Demo!"
+
+[connection signal="pressed" from="start_button" to="." method="_on_start_button_pressed"]

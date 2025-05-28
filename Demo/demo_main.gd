@@ -27,6 +27,7 @@ const PLATFORM_TILE = Vector2i(0,1)
 @export var player_base_hp = 100
 signal win
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	timeline_manager.construct(timeline, 0)
