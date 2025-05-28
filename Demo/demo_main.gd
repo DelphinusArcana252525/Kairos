@@ -35,6 +35,8 @@ func _ready() -> void:
 	Anomaly.player = player
 	sal.pc = player
 	sal.position = sal_pos
+	Anomaly.lock()
+	player.lock()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -185,4 +187,15 @@ func _on_anomaly_die() -> void:
 
 
 func _on_win() -> void:
+	player.lock()
+	Anomaly.lock()
+	FadeOut.set_label_text("You Win!")
+	FadeOut.time_to_full = 100000
+	FadeOut.show()
 	print("Win!")
+
+
+func _on_start_screen_pressed() -> void:
+	player.unlock()
+	Anomaly.unlock()
+	$start_screen.queue_free()

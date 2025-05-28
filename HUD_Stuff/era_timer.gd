@@ -5,7 +5,7 @@ extends Node2D
 @export var change_coeff = 0.75
 var time_elapsed = 0
 var current_max_time = 60
-
+var stopped = false
 signal timeout
 
 # Called when the node enters the scene tree for the first time.
@@ -19,7 +19,8 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	time_elapsed += delta
 	if time_elapsed >= current_max_time:
-		timeout.emit()
+		if not stopped:
+			timeout.emit()
 		time_elapsed = 0
 	update_label_text()
 	
